@@ -2,84 +2,45 @@ package com.example.restaurant.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tbl_order")
-public class Order extends User{
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int restaurantID;
-    private int menuID;
-    private String quality;
+    private int orderID;
+    private int userID;
+    private int price;
 
-    public Order(){
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    }
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<Menu> menu;
 
-    public Order(int id, int restaurantID, int menuID, String quality) {
+   public Order(){
+
+   }
+
+    public Order(int id, int orderID, int userID, int price) {
         this.id = id;
-        this.restaurantID = restaurantID;
-        this.menuID = menuID;
-        this.quality = quality;
+        this.orderID = orderID;
+        this.userID = userID;
+        this.price = price;
     }
 
-    @Override
-    public int getId() {
-        return id;
-    }
+//      @OneToOne
+//   @JoinColumn(name="User")
+//  private User user;
 
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
+//    @OneToMany
+//    @JoinColumn(name="Menu")
+//    private List<Menu> menu;
 
-    public int getRestaurantID() {
-        return restaurantID;
-    }
-
-    public void setRestaurantID(int restaurantID) {
-        this.restaurantID = restaurantID;
-    }
-
-    public int getMenuID() {
-        return menuID;
-    }
-
-    public void setMenuID(int menuID) {
-        this.menuID = menuID;
-    }
-
-    public String getQuality() {
-        return quality;
-    }
-
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Order order = (Order) o;
-        return id == order.id && restaurantID == order.restaurantID && menuID == order.menuID && Objects.equals(quality, order.quality);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), id, restaurantID, menuID, quality);
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", restaurantID=" + restaurantID +
-                ", menuID=" + menuID +
-                ", quality='" + quality + '\'' +
-                '}';
-    }
 }
+
