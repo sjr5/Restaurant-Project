@@ -5,14 +5,14 @@ import com.example.restaurant.Entity.User;
 import java.util.List;
 
 public interface UserService {
-  public List<User> showAll();
 
-  public User addCourse(User user);
+   public List<User> showAll();
 
-  User addUser(User user);
+  public User save(User user);
 
-  public  User save(User user);
+    List<User> doShowAll();
 
 
-  //Customer save(Customer customer);
+
+
 }

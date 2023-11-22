@@ -13,13 +13,10 @@ public class OrderImpl implements OrderService {
     @Autowired
     OrderRepository orderRepository;
 
+
     @Override
-   public Order cancelOrder(Order order) {
+    public Order save(Order order) {
         return orderRepository.save(order);
     }
-    // @Override
-  //  public Order cancelOrder(Order order) {
-      //  return orderRepository.save(order);
-   // }
 
 }
